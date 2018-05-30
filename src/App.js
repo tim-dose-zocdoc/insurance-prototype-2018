@@ -1,28 +1,17 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import carriers from './data/Carriers';
 import plans from './data/Plans';
-import _ from 'lodash';
 import './App.css';
+import InsurancePicker from './components/InsurancePicker';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React!!!</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <InsurancePicker carriers={carriers} />
         <div className="plans">
           <h2>Plans</h2>
           <PlanList plans={plans} />
-        </div>
-        <div className="carriers">
-          <h2>Carriers</h2>
-          <CarrierList carriers={carriers} />
         </div>
       </div>
     );
@@ -39,14 +28,6 @@ function PlanList(props) {
   );
 }
 
-function CarrierList(props) {
-  const carriers = props.carriers.slice(0,100);
-  const listItems = carriers.map((carrier) =>
-    <li key={carrier.id}>{carrier.name}</li> 
-  );
-  return (
-    <ul>{listItems}</ul>
-  );
-}
+
 
 export default App;
