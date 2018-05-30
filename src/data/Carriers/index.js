@@ -1,6 +1,6 @@
 import rawCarriers from './carriers.json';
 
-const carriers = rawCarriers.map(function(raw){
+const carriers = rawCarriers.map((raw) => {
     return {
         id: raw.InsuranceID,
         name: raw['Carrier Name'],

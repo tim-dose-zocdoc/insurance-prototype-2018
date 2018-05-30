@@ -1,6 +1,6 @@
 import rawData from './insurance_data.json';
 
-const plans = rawData.map(function(raw){
+const plans = rawData.map((raw) => {
     return {
         id: raw.PlanType_ID,
         carrier: {
