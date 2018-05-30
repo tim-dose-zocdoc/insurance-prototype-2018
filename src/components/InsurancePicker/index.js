@@ -27,8 +27,6 @@ class SearchBar extends Component {
 
 
 class CarrierListItem extends Component {
-    
-    
     handleClick = (carrier) => {
         console.log(carrier.name);
     }
@@ -92,6 +90,20 @@ class InsurancePicker extends Component {
         return _(this.props.carriers).orderBy('requests', 'desc').slice(0,count).sortBy('name');
     }
 
+    maybeRenderPopularCarriers = () => {
+        if (this.state.searchText.length == 0 ) {
+            return (
+                <div>
+                    <h2>Popular carriers</h2>
+                    <CarrierList
+                        carriers={this.topCarriers(5)}
+                        searchText={this.state.searchText}
+                    />
+                </div>
+            );
+        }
+    }
+
     render() {
         return (
             <div>
@@ -99,12 +111,9 @@ class InsurancePicker extends Component {
                     searchText={this.state.searchText}
                     onSearchTextChange={this.handleSearchTextChange}
                 />
-                <h2>Popular carriers</h2>
-                <CarrierList
-                    carriers={this.topCarriers(5)}
-                    searchText={this.state.searchText}
-                />
-                <h2>All carriers</h2>
+                {this.maybeRenderPopularCarriers()}
+                
+                {this.state.searchText.length == 0 ? <h2>All carriers</h2> : ''}
                 <CarrierList
                     carriers={this.props.carriers}
                     searchText={this.state.searchText}
