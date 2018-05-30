@@ -66,16 +66,11 @@ class CarrierList extends Component {
 }
 
 class InsurancePicker extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            searchText: ''
-        };
-
-        this.handleSearchTextChange = this.handleSearchTextChange.bind(this);
+    state = {
+        searchText: ''
     }
 
-    handleSearchTextChange(searchText) {
+    handleSearchTextChange = (searchText) => {
         this.setState({
             searchText:searchText
         });
