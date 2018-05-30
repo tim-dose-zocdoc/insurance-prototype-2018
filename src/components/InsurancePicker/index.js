@@ -46,7 +46,7 @@ class CarrierList extends Component {
                 items.push(
                     <CarrierListItem 
                         carrier={carrier}
-                        key={carrier}
+                        key={carrier.name + carrier.id}
                     />
                 );
             }

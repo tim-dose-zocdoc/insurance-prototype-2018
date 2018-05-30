@@ -9,25 +9,10 @@ class App extends Component {
     return (
       <div className="App">
         <InsurancePicker carriers={carriers} />
-        <div className="plans">
-          <h2>Plans</h2>
-          <PlanList plans={plans} />
-        </div>
       </div>
     );
   }
 }
-
-function PlanList(props) {
-  const plans = props.plans.slice(0,100);
-  const listItems = plans.map((plan) =>
-    <li key={'plan-' + plan.id}>{plan.carrier.name} - {plan.name}</li> 
-  );
-  return (
-    <ul>{listItems}</ul>
-  );
-}
-
 
 
 export default App;
