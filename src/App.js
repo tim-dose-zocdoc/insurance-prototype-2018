@@ -15,8 +15,12 @@ class App extends Component {
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
-        <div className="carriers">
+        <div className="plans">
+          <h2>Plans</h2>
           <PlanList plans={plans} />
+        </div>
+        <div className="carriers">
+          <h2>Carriers</h2>
           <CarrierList carriers={carriers} />
         </div>
       </div>
@@ -25,9 +29,9 @@ class App extends Component {
 }
 
 function PlanList(props) {
-  const plans = props.plans;
+  const plans = props.plans.slice(0,100);
   const listItems = plans.map((plan) =>
-    <li key={plan.PlanType_ID}>{plan['Carrier']} - {plan['Plan']}</li> 
+    <li key={'plan-' + plan.PlanType_ID}>{plan['Carrier']} - {plan['Plan']}</li> 
   );
   return (
     <ul>{listItems}</ul>
@@ -35,7 +39,7 @@ function PlanList(props) {
 }
 
 function CarrierList(props) {
-  const carriers = props.carriers;
+  const carriers = props.carriers.slice(0,100);
   const listItems = carriers.map((carrier) =>
     <li key={carrier.InsuranceID}>{carrier['Carrier Name']}</li> 
   );
