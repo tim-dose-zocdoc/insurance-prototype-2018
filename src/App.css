@@ -37,3 +37,9 @@ mark {
   color: #FF6473;
   font-weight: bold;
 }
+
+.carrier-search-field {
+  font-size: 16px;
+  padding: 16px;
+  width: 50%;
+}

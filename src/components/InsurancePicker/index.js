@@ -14,6 +14,7 @@ class SearchBar extends Component {
         return (
             <form>
                 <input
+                    className="carrier-search-field"
                     type="text"
                     placeholder="Search..."
                     value={searchText} 
@@ -26,14 +27,22 @@ class SearchBar extends Component {
 
 
 class CarrierListItem extends Component {
+    
+    
+    handleClick = (carrier) => {
+        console.log(carrier.name);
+    }
+    
     render() {
+        const carrier = this.props.carrier;
+
         return(
-            <li>
+            <li key={carrier.name} onClick={() => this.handleClick(carrier)}>
                 <Highlighter
                     highlightClassName="string-match"
                     searchWords={[this.props.searchText]}
                     autoEscape={true}
-                    textToHighlight={this.props.carrier.name}
+                    textToHighlight={carrier.name}
                 />
             </li>
         );

@@ -378,13 +378,6 @@
     "isBCBS": 1
   },
   {
-    "InsuranceID": -1,
-    "Carrier Name": "Blue Cross Blue Shield (BCBS)",
-    "HealthDental": 2,
-    "Requests": 459843,
-    "isBCBS": ""
-  },
-  {
     "InsuranceID": 545,
     "Carrier Name": "Blue Cross Blue Shield Federal Employee Program",
     "HealthDental": 2,
