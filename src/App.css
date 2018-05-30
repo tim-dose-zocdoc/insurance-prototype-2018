@@ -1,5 +1,6 @@
 .App {
-  text-align: center;
+  color: #00234b;
+  padding: 24px;
 }
 
 .App-logo {
@@ -25,4 +26,14 @@
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+mark {
+  background-color: inherit;
+  color: inherit;
+}
+
+.string-match {
+  color: #FF6473;
+  font-weight: bold;
 }

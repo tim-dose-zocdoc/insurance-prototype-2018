@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import carriers from './data/Carriers';
-import plans from './data/Plans';
 import './App.css';
 import InsurancePicker from './components/InsurancePicker';
 

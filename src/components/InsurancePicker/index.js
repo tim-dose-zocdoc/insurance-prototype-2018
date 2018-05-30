@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
+import Highlighter from 'react-highlight-words';
 
 
 class SearchBar extends Component {
@@ -26,9 +27,15 @@ class SearchBar extends Component {
 
 class CarrierListItem extends Component {
     render() {
-        const carrier=this.props.carrier;
         return(
-            <li>{carrier.name}</li>
+            <li>
+                <Highlighter
+                    highlightClassName="string-match"
+                    searchWords={[this.props.searchText]}
+                    autoEscape={true}
+                    textToHighlight={this.props.carrier.name}
+                />
+            </li>
         );
         
     }
@@ -46,6 +53,7 @@ class CarrierList extends Component {
                 items.push(
                     <CarrierListItem 
                         carrier={carrier}
+                        searchText={this.props.searchText}
                         key={carrier.name + carrier.id}
                     />
                 );
