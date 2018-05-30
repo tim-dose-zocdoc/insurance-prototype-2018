@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import _ from 'lodash';
 
 
 class SearchBar extends Component {
@@ -71,6 +71,10 @@ class InsurancePicker extends Component {
         });
     }
 
+    topCarriers = (count=10) => {
+        return _(this.props.carriers).orderBy('requests', 'desc').slice(0,count).sortBy('name');
+    }
+
     render() {
         return (
             <div>
@@ -78,6 +82,12 @@ class InsurancePicker extends Component {
                     searchText={this.state.searchText}
                     onSearchTextChange={this.handleSearchTextChange}
                 />
+                <h2>Popular carriers</h2>
+                <CarrierList
+                    carriers={this.topCarriers(5)}
+                    searchText={this.state.searchText}
+                />
+                <h2>All carriers</h2>
                 <CarrierList
                     carriers={this.props.carriers}
                     searchText={this.state.searchText}
