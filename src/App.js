@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
-import carriers from './data/carriers.json';
+import carriers from './data/Carriers';
 import plans from './data/insurance_data.json';
+import _ from 'lodash';
 import './App.css';
 
 class App extends Component {
@@ -41,7 +42,7 @@ function PlanList(props) {
 function CarrierList(props) {
   const carriers = props.carriers.slice(0,100);
   const listItems = carriers.map((carrier) =>
-    <li key={carrier.InsuranceID}>{carrier['Carrier Name']}</li> 
+    <li key={carrier.id}>{carrier.name}</li> 
   );
   return (
     <ul>{listItems}</ul>
