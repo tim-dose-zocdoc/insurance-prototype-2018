@@ -31,6 +31,7 @@ class PlanList extends Component {
                     <PlanListItem
                         plan={plan}
                         searchText={searchText}
+                        key={plan.id}
                     />
                 );
             }
