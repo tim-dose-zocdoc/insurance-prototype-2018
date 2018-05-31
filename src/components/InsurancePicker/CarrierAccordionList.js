@@ -49,24 +49,37 @@ class CarrierAccordion extends Component {
     handleClick = (carrier) => {
         console.log(carrier.name);
     }
-    
+
+
     render() {
         const carrier = this.props.carrier;
+        
+        var hasMatchingPlans = false;
+    
+        this.props.plans.forEach((plan) => {
+            if (plan.name.toLowerCase().indexOf(this.props.searchText.toLowerCase()) > -1 ) {
+                hasMatchingPlans = true;
+            }
+        });
 
-        return(
-            <li key={carrier.name} onClick={() => this.handleClick(carrier)}>
-                <Highlighter
-                    highlightClassName="string-match"
-                    searchWords={[this.props.searchText]}
-                    autoEscape={true}
-                    textToHighlight={carrier.name}
-                />
-                <PlanList
-                    plans={this.props.plans}
-                    searchText={this.props.searchText}
-                />
-            </li>
-        );
+        if (hasMatchingPlans) {
+            return(
+                <li key={carrier.name} onClick={() => this.handleClick(carrier)}>
+                    <Highlighter
+                        highlightClassName="string-match"
+                        searchWords={[this.props.searchText]}
+                        autoEscape={true}
+                        textToHighlight={carrier.name}
+                    />
+                    <PlanList
+                        plans={this.props.plans}
+                        searchText={this.props.searchText}
+                    />
+                </li>
+            );
+        } else {
+            return null;
+        }
         
     }
 }
@@ -74,30 +87,17 @@ class CarrierAccordion extends Component {
 
 class CarrierAccordionList extends Component {
     render() {
-        const searchText = this.props.searchText;
-    
         const items = [];
         
         this.props.carriers.forEach((carrier) => {
-            const plans = this.props.plans[carrier.name];
-            var hasMatchingPlans = false;
-    
-            plans.forEach((plan) => {
-                if (plan.name.toLowerCase().indexOf(searchText.toLowerCase()) > -1 ) {
-                    hasMatchingPlans = true;
-                }
-            });
-
-            if (carrier.name.toLowerCase().indexOf(searchText.toLowerCase()) > -1 || hasMatchingPlans ) {
-                items.push(
-                    <CarrierAccordion
-                        carrier={carrier}
-                        plans={plans}
-                        searchText={this.props.searchText}
-                        key={carrier.name + carrier.id}
-                    />
-                );
-            }
+            items.push(
+                <CarrierAccordion
+                    carrier={carrier}
+                    plans={this.props.plans[carrier.name]}
+                    searchText={this.props.searchText}
+                    key={carrier.name + carrier.id}
+                />
+            );
         });
 
         return (
