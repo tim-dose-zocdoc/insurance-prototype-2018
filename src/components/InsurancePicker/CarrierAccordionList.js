@@ -77,10 +77,18 @@ class CarrierAccordionList extends Component {
         const searchText = this.props.searchText;
     
         const items = [];
-
+        
         this.props.carriers.forEach((carrier) => {
-            // if (carrier.name.toLowerCase().indexOf(searchText.toLowerCase()) > -1 ) {
-                const plans = this.props.plans[carrier.name];
+            const plans = this.props.plans[carrier.name];
+            var hasMatchingPlans = false;
+    
+            plans.forEach((plan) => {
+                if (plan.name.toLowerCase().indexOf(searchText.toLowerCase()) > -1 ) {
+                    hasMatchingPlans = true;
+                }
+            });
+
+            if (carrier.name.toLowerCase().indexOf(searchText.toLowerCase()) > -1 || hasMatchingPlans ) {
                 items.push(
                     <CarrierAccordion
                         carrier={carrier}
@@ -89,7 +97,7 @@ class CarrierAccordionList extends Component {
                         key={carrier.name + carrier.id}
                     />
                 );
-            // }
+            }
         });
 
         return (
