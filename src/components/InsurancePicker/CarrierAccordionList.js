@@ -47,10 +47,26 @@ class PlanList extends Component {
 
 
 class CarrierAccordion extends Component {
-    handleClick = (carrier) => {
-        console.log(carrier.name);
+    state = {
+        open: false
     }
 
+    handleClick = (carrier) => {
+        this.setState({
+            open: this.state.open? false : true
+        });
+    }
+
+    maybeRenderPlanList = () => {
+        if ( this.state.open === true ) {
+            return(
+                <PlanList
+                    plans={this.props.plans}
+                    searchText={this.props.searchText}
+                />
+            );
+        }
+    }
 
     render() {
         const carrier = this.props.carrier;
@@ -72,10 +88,7 @@ class CarrierAccordion extends Component {
                         autoEscape={true}
                         textToHighlight={carrier.name}
                     />
-                    <PlanList
-                        plans={this.props.plans}
-                        searchText={this.props.searchText}
-                    />
+                    {this.maybeRenderPlanList()}
                 </li>
             );
         } else {
@@ -88,10 +101,10 @@ class CarrierAccordion extends Component {
 
 class CarrierAccordionList extends Component {
     render() {
-        const items = [];
+        const carriers = [];
         
         this.props.carriers.forEach((carrier) => {
-            items.push(
+            carriers.push(
                 <CarrierAccordion
                     carrier={carrier}
                     plans={this.props.plans[carrier.name]}
@@ -103,7 +116,7 @@ class CarrierAccordionList extends Component {
 
         return (
             <ul>
-                {items}
+                {carriers}
             </ul>
         );
     }
