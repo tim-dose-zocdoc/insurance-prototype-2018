@@ -1,5 +1,14 @@
 import React, { Component } from 'react';
 import Highlighter from 'react-highlight-words';
+import Arrow from '../icons/Arrow';
+import styled from 'styled-components';
+
+const SizedArrow = styled(Arrow) `
+    width: 10px;
+    margin-left: 4px;
+    position: relative;
+    top: 3px;
+`;
 
 class PlanListItem extends Component {
     render() {
@@ -68,6 +77,22 @@ class CarrierAccordion extends Component {
         }
     }
 
+    renderArrow = () => {
+        if ( this.state.open === true ) {
+            return (
+                <SizedArrow
+                    direction={Arrow.direction.up}
+                />
+            );
+        } else {
+            return (
+                <SizedArrow
+                    direction={Arrow.direction.down}
+                />
+            );
+        }
+    }
+
     render() {
         const carrier = this.props.carrier;
         
@@ -88,6 +113,7 @@ class CarrierAccordion extends Component {
                         autoEscape={true}
                         textToHighlight={carrier.name}
                     />
+                    {this.renderArrow()}
                     {this.maybeRenderPlanList()}
                 </li>
             );
