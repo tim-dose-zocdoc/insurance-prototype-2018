@@ -43,3 +43,7 @@ mark {
   padding: 16px;
   width: 50%;
 }
+
+* {
+  box-sizing: border-box;
+}

@@ -13,6 +13,16 @@ const SizedArrow = styled(Arrow) `
     top: 3px;
 `;
 
+const CarrierListItemStyled = styled.li `
+    list-style: none;
+    min-height: 32px;
+    padding: 8px 0;
+`
+
+const CarrierListStyled = styled.ul `
+    padding: 0;
+`;
+
 class CarrierAccordion extends Component {
     state = {
         open: false
@@ -64,7 +74,7 @@ class CarrierAccordion extends Component {
 
         if (hasMatchingPlans) {
             return(
-                <li key={carrier.name} onClick={() => this.handleClick(carrier)}>
+                <CarrierListItemStyled key={carrier.name} onClick={() => this.handleClick(carrier)}>
                     <Highlighter
                         highlightClassName="string-match"
                         searchWords={[this.props.searchText]}
@@ -73,7 +83,7 @@ class CarrierAccordion extends Component {
                     />
                     {this.renderArrow()}
                     {this.maybeRenderPlanList()}
-                </li>
+                </CarrierListItemStyled>
             );
         } else {
             return null;
@@ -99,9 +109,9 @@ class CarrierAccordionList extends Component {
         });
 
         return (
-            <ul>
+            <CarrierListStyled>
                 {carriers}
-            </ul>
+            </CarrierListStyled>
         );
     }
 }
