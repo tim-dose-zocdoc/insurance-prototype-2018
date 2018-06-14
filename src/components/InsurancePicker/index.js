@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import _ from 'lodash';
 
 import SearchBar from './SearchBar'
-import CarrierList from './CarrierList'
 import CarrierAccordionList from './CarrierAccordionList'
 
 
@@ -35,16 +34,11 @@ class InsurancePicker extends Component {
                     carriers={this.topCarriers(5)}
                     plans={plansGrouped}
                     searchText={this.state.searchText}
-                />
-                <h2>Popular carriers</h2>
-                <CarrierList
-                    carriers={this.topCarriers(5)}
-                    searchText={this.state.searchText}
-                />
-                
+                />                
                 <h2>All carriers</h2>
-                <CarrierList
-                    carriers={this.props.carriers}
+                <CarrierAccordionList
+                    carriers={this.topCarriers(100)}
+                    plans={plansGrouped}
                     searchText={this.state.searchText}
                 />
             </div>
