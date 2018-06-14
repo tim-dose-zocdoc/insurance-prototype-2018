@@ -29,13 +29,13 @@ class InsurancePicker extends Component {
                     searchText={this.state.searchText}
                     onSearchTextChange={this.handleSearchTextChange}
                 />
-                <h2>Popular carriers (accordion)</h2>
+                <h2>Popular insurances</h2>
                 <CarrierAccordionList 
                     carriers={this.topCarriers(5)}
                     plans={plansGrouped}
                     searchText={this.state.searchText}
                 />                
-                <h2>All carriers</h2>
+                <h2>All insurances</h2>
                 <CarrierAccordionList
                     carriers={this.topCarriers(100)}
                     plans={plansGrouped}
