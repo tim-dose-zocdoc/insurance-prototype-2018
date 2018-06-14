@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import styled from "styled-components";
 
 class SearchBar extends Component {
     handleSearchTextChange = (e) => {
@@ -10,7 +11,7 @@ class SearchBar extends Component {
 
         return (
             <form>
-                <input
+                <SearchStyled
                     className="carrier-search-field"
                     type="text"
                     placeholder="Search..."
@@ -23,3 +24,9 @@ class SearchBar extends Component {
 }
 
 export default SearchBar;
+
+const SearchStyled = styled.input `
+    font-size: 16px;
+    padding: 16px;
+    width: 100%;
+`;

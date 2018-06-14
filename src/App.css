@@ -38,12 +38,6 @@ mark {
   font-weight: bold;
 }
 
-.carrier-search-field {
-  font-size: 16px;
-  padding: 16px;
-  width: 50%;
-}
-
 * {
   box-sizing: border-box;
 }
