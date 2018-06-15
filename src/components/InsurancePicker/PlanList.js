@@ -36,10 +36,6 @@ class PlanList extends Component {
         const searchText = this.props.searchText;
 
         this.props.plans.forEach( (plan) => {
-            if ( plan.carrier.name === 'Aetna' && searchText.length > 1) {
-                console.log('plan: ' + plan.name.toLowerCase());
-                console.log('search: ' + searchText.toLowerCase());
-            }
             if (plan.name.toLowerCase().indexOf(searchText.toLowerCase()) > -1 ) {
                 items.push(
                     <PlanListItem

@@ -13,13 +13,13 @@ const SizedArrow = styled(Arrow) `
     top: 3px;
 `;
 
-const CarrierListItemStyled = styled.li `
+const CarrierListItemStyled = styled.li`
     list-style: none;
     min-height: 32px;
     padding: 8px 0;
 `
 
-const CarrierListStyled = styled.ul `
+const CarrierListStyled = styled.ul`
     padding: 0;
 `;
 
@@ -30,23 +30,29 @@ class CarrierAccordion extends Component {
 
     handleClick = (carrier) => {
         this.setState({
-            open: this.state.open? false : true
+            open: this.state.open ? false : true
         });
     }
 
+    renderPlanList = () => {
+        return(
+            <PlanList
+                plans={this.props.plans}
+                searchText={this.props.searchText}
+            />
+        );
+    }
+
     maybeRenderPlanList = () => {
-        if ( this.state.open === true ) {
-            return(
-                <PlanList
-                    plans={this.props.plans}
-                    searchText={this.props.searchText}
-                />
+        if (this.state.open === true) {
+            return (
+                (this.renderPlanList())
             );
         }
     }
 
     renderArrow = () => {
-        if ( this.state.open === true ) {
+        if (this.state.open === true) {
             return (
                 <SizedArrow
                     direction={Arrow.direction.up}
@@ -63,32 +69,37 @@ class CarrierAccordion extends Component {
 
     render() {
         const carrier = this.props.carrier;
-        
+        const searchTextLowerCase = this.props.searchText.toLowerCase();
+
         var hasMatchingPlans = false;
-    
+        var carrierMatches = ( carrier.name.indexOf(searchTextLowerCase) > -1 );
+
         this.props.plans.forEach((plan) => {
-            if (plan.name.toLowerCase().indexOf(this.props.searchText.toLowerCase()) > -1 ) {
+            if (plan.name.toLowerCase().indexOf(searchTextLowerCase) > -1) {
                 hasMatchingPlans = true;
             }
         });
-
-        if (hasMatchingPlans) {
-            return(
-                <CarrierListItemStyled key={carrier.name} onClick={() => this.handleClick(carrier)}>
-                    <Highlighter
-                        highlightClassName="string-match"
-                        searchWords={[this.props.searchText]}
-                        autoEscape={true}
-                        textToHighlight={carrier.name}
-                    />
-                    {this.renderArrow()}
+        
+        if ( carrierMatches === true || hasMatchingPlans === true ) {
+            return (
+                <div>
+                    <CarrierListItemStyled key={carrier.name} onClick={() => this.handleClick(carrier)}>
+                        <Highlighter
+                            highlightClassName="string-match"
+                            searchWords={[this.props.searchText]}
+                            autoEscape={true}
+                            textToHighlight={carrier.name}
+                            />
+                        {this.renderArrow()}
+                    </CarrierListItemStyled>
                     {this.maybeRenderPlanList()}
-                </CarrierListItemStyled>
+                </div>
             );
         } else {
             return null;
         }
-        
+
+
     }
 }
 
@@ -96,7 +107,7 @@ class CarrierAccordion extends Component {
 class CarrierAccordionList extends Component {
     render() {
         const carriers = [];
-        
+
         this.props.carriers.forEach((carrier) => {
             carriers.push(
                 <CarrierAccordion
