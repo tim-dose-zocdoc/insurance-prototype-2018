@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
+import styled from 'styled-components';
 
 import SearchBar from './SearchBar';
 import CarrierAccordion from './CarrierAccordion';
@@ -47,12 +48,21 @@ class InsurancePicker extends Component {
                     onSearchTextChange={this.handleSearchTextChange}
                 />
                 <h2>Popular insurances</h2>
-                {this.renderCarriers(this.topCarriers(5),plansGrouped)}
+                <CarrierListStyled>
+                    {this.renderCarriers(this.topCarriers(5),plansGrouped)}
+                </CarrierListStyled>
                 <h2>All insurances</h2>
-                {this.renderCarriers(this.topCarriers(100),plansGrouped)}
+                <CarrierListStyled>
+                    {this.renderCarriers(this.topCarriers(100),plansGrouped)}
+                </CarrierListStyled>
             </div>
         );
     }
 }
+
+const CarrierListStyled = styled.ul`
+    padding: 0;
+`;
+
 
 export default InsurancePicker;
