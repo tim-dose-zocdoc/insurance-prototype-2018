@@ -22,14 +22,28 @@ class InsurancePicker extends Component {
     
     renderCarriers = (carriers, allPlans) => {
         const matchingCarriers = [];
+        const matchingPlans = [];
+        const searchTextLowerCase = this.state.searchText.toLowerCase();
 
         carriers.forEach( (carrier) => {
-            console.log(JSON.stringify(carrier));
             const plans = allPlans[carrier.name];
+            var carrierMatches = carrier.name.toLowerCase().indexOf(searchTextLowerCase);
+            var hasMatchingPlans = false;
+
+            plans.forEach( (plan) => {
+                if (plan.name.toLowerCase().indexOf(searchTextLowerCase) > -1 ) {
+                    matchingPlans.push(plan);
+                    hasMatchingPlans = true;
+                }
+            });
+
             matchingCarriers.push(
                 <CarrierAccordion
                     carrier={carrier}
+                    carrierMatches={carrierMatches}
                     plans={plans}
+                    hasMatchingPlans={hasMatchingPlans}
+                    matchingPlans={matchingPlans}
                     searchText={this.state.searchText}
                     key={carrier.id}
                 />

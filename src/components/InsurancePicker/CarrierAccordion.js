@@ -45,6 +45,11 @@ class CarrierAccordion extends Component {
                 (this.renderPlanList())
             );
         }
+        if ( this.hasMatchingPlans === true ) {
+            return (
+                (this.renderPlanList())
+            );
+        }
     }
 
     renderArrow = () => {
@@ -65,18 +70,8 @@ class CarrierAccordion extends Component {
 
     render() {
         const carrier = this.props.carrier;
-        const searchTextLowerCase = this.props.searchText.toLowerCase();
-
-        var hasMatchingPlans = false;
-        var carrierMatches = ( carrier.name.indexOf(searchTextLowerCase) > -1 );
-
-        this.props.plans.forEach((plan) => {
-            if (plan.name.toLowerCase().indexOf(searchTextLowerCase) > -1) {
-                hasMatchingPlans = true;
-            }
-        });
         
-        if ( carrierMatches === true || hasMatchingPlans === true ) {
+        if ( this.props.carrierMatches === true || this.props.hasMatchingPlans === true ) {
             return (
                 <div>
                     <CarrierListItemStyled key={carrier.name} onClick={() => this.handleClick(carrier)}>
